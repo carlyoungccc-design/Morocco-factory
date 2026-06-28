@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KR Explorer · Morocco Outdoor Furniture Factory — Investment Briefing</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ── TOKENS ── */
+:root{
+  --navy:#1A2E4A;--navy2:#243B55;--blue:#2563EB;--blue-lt:#DBEAFE;--blue-dk:#1D4ED8;
+  --teal:#0F766E;--teal-lt:#CCFBF1;--green:#15803D;--green-lt:#DCFCE7;
+  --amber:#B45309;--amber-lt:#FEF3C7;--red:#DC2626;--red-lt:#FEE2E2;
+  --sand:#F8F6F0;--sand2:#EDE8DE;
+  --g50:#F8FAFC;--g100:#F1F5F9;--g200:#E2E8F0;--g300:#CBD5E1;
+  --g400:#94A3B8;--g500:#64748B;--g700:#334155;--g900:#0F172A;
+  --white:#fff;
+  --r:10px;--r-lg:16px;--r-sm:6px;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+  --sh-md:0 4px 16px rgba(0,0,0,.10),0 2px 4px rgba(0,0,0,.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  background:var(--sand);color:var(--g900);font-size:15px;line-height:1.65}
+
+/* ── TOPBAR ── */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;
+  background:var(--navy);display:flex;align-items:center;padding:0 1.5rem;gap:1rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.tb-brand{color:#fff;font-weight:700;font-size:15px;letter-spacing:.03em;display:flex;align-items:center;gap:8px}
+.tb-dot{width:8px;height:8px;border-radius:50%;background:#38BDF8;flex-shrink:0}
+.tb-nav{display:flex;gap:4px;margin-left:auto}
+.tb-nav a{color:#94A3B8;font-size:12px;padding:5px 10px;border-radius:var(--r-sm);text-decoration:none;transition:all .15s;white-space:nowrap}
+.tb-nav a:hover,.tb-nav a.active{color:#fff;background:rgba(255,255,255,.12)}
+.lang-btn{margin-left:8px;padding:5px 14px;border:1.5px solid rgba(255,255,255,.3);border-radius:20px;
+  color:#fff;font-size:12px;font-weight:600;cursor:pointer;background:transparent;transition:all .15s;letter-spacing:.05em}
+.lang-btn:hover{background:rgba(255,255,255,.15);border-color:#fff}
+
+/* ── LAYOUT ── */
+.page{padding-top:52px}
+.container{max-width:1060px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+/* ── HERO ── */
+.hero{background:var(--navy);border-radius:var(--r-lg);overflow:hidden;margin-bottom:2rem;position:relative}
+.hero-inner{padding:2.5rem 2.5rem 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start}
+@media(max-width:640px){.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#38BDF8;margin-bottom:.75rem}
+.hero-title{font-size:clamp(22px,3.5vw,32px);font-weight:800;color:#fff;line-height:1.2;margin-bottom:.75rem}
+.hero-sub{font-size:14px;color:#94A3B8;max-width:500px;line-height:1.7}
+.hero-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.25rem}
+.hero-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  color:#CBD5E1;font-size:11px;padding:4px 10px;border-radius:20px}
+.hero-stats{display:flex;flex-direction:column;gap:10px;min-width:180px}
+.hstat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:.9rem 1rem}
+.hstat .hv{font-size:22px;font-weight:800;color:#fff;line-height:1}
+.hstat .hl{font-size:11px;color:#64748B;margin-top:4px}
+.hstat .hv.blue{color:#38BDF8}
+.hstat .hv.green{color:#34D399}
+.hero-bar{height:4px;background:linear-gradient(90deg,#2563EB 0%,#0F766E 50%,#38BDF8 100%)}
+
+/* ── SECTION ── */
+.section{margin-bottom:2rem}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--g400);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--g200)}
+.sec-title{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:1.25rem}
+
+/* ── CARD ── */
+.card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r-lg);
+  padding:1.5rem;box-shadow:var(--sh)}
+.card-title{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--g500);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card-title .ci{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;
+  justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.ci-b{background:var(--blue-lt);color:var(--blue)}
+.ci-t{background:var(--teal-lt);color:var(--teal)}
+.ci-g{background:var(--green-lt);color:var(--green)}
+.ci-a{background:var(--amber-lt);color:var(--amber)}
+.ci-n{background:rgba(26,46,74,.1);color:var(--navy)}
+
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--white);border:1px solid var(--g200);border-radius:var(--r);
+  padding:1rem 1.1rem;box-shadow:var(--sh)}
+.kpi .kv{font-size:24px;font-weight:800;line-height:1.1;margin-bottom:3px}
+.kpi .kl{font-size:11px;color:var(--g400);line-height:1.3}
+.kpi.k-navy .kv{color:var(--navy)}
+.kpi.k-blue .kv{color:var(--blue)}
+.kpi.k-teal .kv{color:var(--teal)}
+.kpi.k-amber .kv{color:var(--amber)}
+.kpi.k-green .kv{color:var(--green)}
+
+/* ── GRID LAYOUTS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+@media(max-width:700px){.g2,.g3{grid-template-columns:1fr}}
+
+/* ── TABLES ── */
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th{background:var(--navy);color:#fff;padding:9px 12px;text-align:left;
+  font-weight:600;font-size:12px;letter-spacing:.03em}
+.data-table th.r{text-align:right}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--g100);vertical-align:middle}
+.data-table td.r{text-align:right;font-weight:600}
+.data-table tr:nth-child(even) td{background:var(--g50)}
+.data-table tr.sub-hdr td{background:var(--navy2);color:#CBD5E1;font-weight:700;font-size:12px;letter-spacing:.04em}
+.data-table tr.total-row td{background:var(--navy);color:#fff;font-weight:700}
+.data-table tr.hi-row td{background:var(--blue-lt)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table .badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;margin-left:4px;vertical-align:middle}
+.b-core{background:#DCFCE7;color:#15803D}
+.b-must{background:#DBEAFE;color:#1D4ED8}
+.b-opt {background:#FEF3C7;color:#92400E}
+.b-new {background:var(--teal-lt);color:var(--teal)}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:2px;background:var(--g200)}
+.tl-item{position:relative;margin-bottom:1.25rem}
+.tl-dot{position:absolute;left:-28px;top:3px;width:18px;height:18px;border-radius:50%;
+  border:2px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.tl-dot.p0{background:var(--amber);color:#fff}
+.tl-dot.p1{background:var(--blue);color:#fff}
+.tl-dot.p2{background:var(--teal);color:#fff}
+.tl-dot.p3{background:var(--green);color:#fff}
+.tl-dot.p4{background:var(--navy);color:#fff}
+.tl-month{font-size:11px;font-weight:700;color:var(--g400);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.tl-title{font-size:14px;font-weight:700;color:var(--g900);margin-bottom:4px}
+.tl-body{font-size:12px;color:var(--g500);line-height:1.6}
+.tl-budget{display:inline-block;margin-top:4px;font-size:11px;font-weight:700;
+  padding:3px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber)}
+
+/* ── FLOOR PLAN SVG ── */
+.fp-wrap{background:var(--g50);border:1px solid var(--g200);border-radius:var(--r);
+  padding:1rem;overflow-x:auto}
+.fp-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:12px}
+.fp-leg-item{display:flex;align-items:center;gap:6px}
+.fp-leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+
+/* ── RISK MATRIX ── */
+.risk-grid{display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:1px;background:var(--g200);border-radius:var(--r);overflow:hidden}
+.rg-cell{background:var(--white);padding:8px 10px;font-size:12px}
+.rg-hdr{background:var(--navy);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em}
+.prob-hi{color:var(--red);font-weight:700}.prob-md{color:var(--amber);font-weight:600}.imp-hi{color:var(--red);font-weight:700}.imp-md{color:var(--amber)}
+
+/* ── EQUITY CALC ── */
+.eq-form{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:640px){.eq-form{grid-template-columns:1fr 1fr}}
+.eq-field{display:flex;flex-direction:column;gap:4px}
+.eq-field label{font-size:11px;font-weight:600;color:var(--g500);letter-spacing:.04em;text-transform:uppercase}
+.eq-field input,.eq-field select{height:38px;padding:0 10px;border:1.5px solid var(--g200);
+  border-radius:var(--r-sm);font-size:14px;color:var(--g900);background:var(--white);outline:none;transition:border .15s}
+.eq-field input:focus,.eq-field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.eq-field .hint{font-size:10px;color:var(--g400)}
+.inv-row-eq{display:grid;grid-template-columns:1.5fr 1fr 36px;gap:8px;align-items:end;
+  padding:10px 12px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r);margin-bottom:6px}
+.btn-rm-eq{width:32px;height:32px;border:1.5px solid var(--g300);border-radius:var(--r-sm);
+  background:white;cursor:pointer;color:var(--g500);font-size:14px;transition:all .15s}
+.btn-rm-eq:hover{background:var(--red-lt);border-color:#FCA5A5;color:var(--red)}
+.btn-add{width:100%;padding:9px;border:1.5px dashed var(--g300);border-radius:var(--r);
+  background:transparent;color:var(--g400);font-size:13px;cursor:pointer;transition:all .15s;margin-top:4px}
+.btn-add:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.btn-calc{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;
+  border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;margin-top:.75rem;
+  transition:all .15s;letter-spacing:.03em}
+.btn-calc:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:var(--sh-md)}
+.eq-result{display:none;margin-top:1.5rem}
+.eq-kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:1rem}
+.yr-switch{display:flex;gap:6px;margin-bottom:1rem}
+.yr-btn{padding:5px 16px;border:1.5px solid var(--g200);border-radius:20px;font-size:12px;
+  font-weight:600;cursor:pointer;background:white;color:var(--g500);transition:all .15s}
+.yr-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.inv-res-card{border:1px solid var(--g200);border-radius:var(--r);padding:1rem 1.1rem;
+  margin-bottom:8px;background:white}
+.inv-res-card.you{border-color:var(--blue);background:linear-gradient(135deg,#EFF6FF,#F0FDF4)}
+.irc-name{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.irc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.irc-cell .cl{font-size:10px;color:var(--g400);margin-bottom:2px}
+.irc-cell .cv{font-size:15px;font-weight:700;color:var(--g900)}
+.irc-cell .cv.pos{color:var(--teal)}.irc-cell .cv.bl{color:var(--blue)}.irc-cell .cv.am{color:var(--amber)}
+.irc-cell .cs{font-size:10px;color:var(--g400);margin-top:1px}
+.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px}
+.badge-ctrl{background:var(--green-lt);color:var(--green)}
+.badge-fin{background:var(--blue-lt);color:var(--blue)}
+.alert{border-radius:var(--r);padding:11px 15px;font-size:13px;line-height:1.6;
+  margin-bottom:1rem;display:flex;gap:10px;align-items:flex-start}
+.alert.warn{background:var(--amber-lt);border:1px solid #FCD34D;color:var(--amber)}
+.alert.ok{background:var(--green-lt);border:1px solid #86EFAC;color:var(--green)}
+.alert.info{background:var(--blue-lt);border:1px solid #93C5FD;color:#1E40AF}
+
+/* ── PRINT ── */
+@media print{#topbar,#lang-btn,#eq-section .btn-calc,.btn-add,.btn-rm-eq{display:none!important}
+  .page{padding-top:0}.hero{border-radius:0;margin-bottom:1rem}
+  .card,kpi{box-shadow:none;border:1px solid #ccc}
+  @page{margin:1.5cm}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .container{padding:1rem 1rem 3rem}
+  .hero-inner{padding:1.5rem}
+  #topbar .tb-nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOPBAR ── -->
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-dot"></div>KR Explorer</div>
+  <nav class="tb-nav">
+    <a href="#overview" class="t">概览 Overview</a>
+    <a href="#market" class="t">市场 Market</a>
+    <a href="#factory" class="t">工厂 Factory</a>
+    <a href="#equipment" class="t">设备 Equipment</a>
+    <a href="#financials" class="t">财务 Financials</a>
+    <a href="#timeline" class="t">进度 Timeline</a>
+    <a href="#equity" class="t">股权 Equity</a>
+  </nav>
+  <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="page">
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+<section id="overview" class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow t" data-zh="摩洛哥户外用品制造厂 · 投资简报 V3.0 · 2026年6月" data-en="Morocco Outdoor Furniture Factory · Investor Briefing V3.0 · June 2026">摩洛哥户外用品制造厂 · 投资简报 V3.0 · 2026年6月</div>
+      <h1 class="hero-title t" data-zh="KR Explorer · 从进口转向本地全链条制造" data-en="KR Explorer · From Importing to Full-Chain Local Manufacturing">KR Explorer · 从进口转向本地全链条制造</h1>
+      <p class="hero-sub t" data-zh="在摩洛哥建立全套户外用品制造工厂（年产45万件），实现进口替代、欧洲及中非出口、本地关税优势三重战略目标。Y1-Y2占领本土市场80%份额，Y3起开拓中非+欧洲，Y4引入铝管高端产品线。" data-en="Establishing a full-stack outdoor furniture factory in Morocco (450k units/yr) — Y1-Y2 targeting 80% local market share, Y3 expanding to Sub-Saharan Africa + EU exports, Y4 launching premium aluminum product line.">在摩洛哥建立全套户外用品制造工厂，实现进口替代、欧洲出口、本地关税优势三重战略目标，目标2027年Q3全线投产。</p>
+      <div class="hero-pills">
+        <span class="hero-pill t" data-zh="ZAI工业区·前5年IS=0%" data-en="ZAI Zone · 0% Corp Tax 5yr">ZAI工业区·前5年IS=0%</span>
+        <span class="hero-pill t" data-zh="成品进口关税30% → 原料2.5%" data-en="Finished Goods 30% → Raw Mat. 2.5%">成品进口关税30% → 原料2.5%</span>
+        <span class="hero-pill t" data-zh="欧盟零关税出口通道" data-en="EU Zero-Tariff Export Channel">欧盟零关税出口通道</span>
+        <span class="hero-pill t" data-zh="2026年SMIG 3,423 MAD/月" data-en="2026 Min Wage 3,423 MAD/mo">2026年SMIG 3,423 MAD/月</span>
+        <span class="hero-pill t" data-zh="雇主CNSS 21.09%" data-en="Employer CNSS 21.09%">雇主CNSS 21.09%</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hv blue">2,114<span style="font-size:14px">万</span></div><div class="hl t" data-zh="总前期投入（MAD）" data-en="Total Investment (MAD)">总前期投入（MAD）</div></div>
+      <div class="hstat"><div class="hv green">~2.2<span style="font-size:14px">年</span></div><div class="hl t" data-zh="静态回本周期（Y3满产+出口）" data-en="Static Payback (Y3 full+export)">静态回本周期</div></div>
+      <div class="hstat"><div class="hv">51%</div><div class="hl t" data-zh="发起人控股比例" data-en="Founder Control Share">发起人控股比例</div></div>
+    </div>
+  </div>
+  <div class="hero-bar"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     MARKET
+══════════════════════════════════════════════════ -->
+<section id="market" class="section">
+  <div class="sec-label"><span class="t" data-zh="市场优势" data-en="Market Advantage">市场优势</span></div>
+  <div class="g3">
+    <div class="card">
+      <div class="card-title"><span class="ci ci-a">①</span><span class="t" data-zh="关税套利" data-en="Tariff Arbitrage">关税套利</span></div>
+      <table class="data-table">
+        <thead><tr><th class="t" data-zh="品类" data-en="Category">品类</th><th class="r t" data-zh="进口成品税率" data-en="Import DTS">进口成品税率</th><th class="r t" data-zh="本地原料税率" data-en="Local RM Tax">本地原料税率</th></tr></thead>
+        <tbody>
+          <tr><td class="t" data-zh="成品桌椅 HS9401/9403" data-en="Furniture HS9401/9403">成品桌椅</td><td class="r" style="color:var(--red);font-weight:700">30%</td><td class="r" style="color:var(--green);font-weight:700">2.5%</td></tr>
+          <tr><td class="t" data-zh="塑料件 HS3926" data-en="Plastic Parts HS3926">塑料件</td><td class="r" style="color:var(--red);font-weight:700">40%</td><td class="r" style="color:var(--green);font-weight:700">2.5%</td></tr>
+          <tr><td class="t" data-zh="织物 HS5903" data-en="Fabric HS5903">织物 HS5903</td><td class="r" style="color:var(--amber)">10%</td><td class="r" style="color:var(--green);font-weight:700">0%本地采购</td></tr>
+          <tr class="total-row"><td class="t" data-zh="年节税估算" data-en="Annual Tax Saving">年节税估算</td><td colspan="2" class="r" style="color:#34D399">约125万 MAD/年</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ci ci-t">②</span><span class="t" data-zh="摩洛哥2026宏观" data-en="Morocco 2026 Macro">摩洛哥2026宏观</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="padding:10px;background:var(--g50);border-radius:var(--r-sm);border-left:3px solid var(--blue)">
+          <div style="font-size:12px;color:var(--g400)" class="t" data-zh="GDP增长预测" data-en="GDP Growth Forecast">GDP增长预测</div>
+          <div style="font-size:18px;font-weight:700;color:var(--blue)">5.0% <span style="font-size:12px;color:var(--g400)" class="t" data-zh="(2026年)" data-en="(2026)">(2026年)</span></div>
+        </div>
+        <div style="padding:10px;background:var(--g50);border-radius:var(--r-sm);border-left:3px solid var(--teal)">
+          <div style="font-size:12px;color:var(--g400)" class="t" data-zh="最低工资 SMIG 2026" data-en="Min Wage SMIG 2026">最低工资 SMIG 2026</div>
+          <div style="font-size:18px;font-weight:700;color:var(--teal)">3,423 MAD<span style="font-size:12px;color:var(--g400)">/月</span></div>
+        </div>
+        <div style="padding:10px;background:var(--g50);border-radius:var(--r-sm);border-left:3px solid var(--green)">
+          <div style="font-size:12px;color:var(--g400)" class="t" data-zh="雇主CNSS（2026年）" data-en="Employer CNSS (2026)">雇主CNSS（2026年）</div>
+          <div style="font-size:18px;font-weight:700;color:var(--green)">21.09%</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ci ci-g">③</span><span class="t" data-zh="政策红利" data-en="Policy Benefits">政策红利</span></div>
+      <div style="font-size:13px;color:var(--g700);line-height:1.9">
+        <div style="margin-bottom:8px"><span style="color:var(--green);font-weight:700">✓ </span><span class="t" data-zh="ZAI工业加速区：前5年企业所得税IS全免，第6年起20%" data-en="ZAI Zone: 0% corp tax for 5 years, then 20%">ZAI工业加速区：前5年IS全免</span></div>
+        <div style="margin-bottom:8px"><span style="color:var(--green);font-weight:700">✓ </span><span class="t" data-zh="设备进口关税2.5%，可申请CRI豁免" data-en="Equipment import tariff 2.5%, CRI exemption applicable">设备进口关税2.5%，可申请CRI豁免</span></div>
+        <div style="margin-bottom:8px"><span style="color:var(--green);font-weight:700">✓ </span><span class="t" data-zh="Maroc PME设备补贴：最高设备成本30–40%" data-en="Maroc PME equipment subsidy: up to 30–40% of equipment cost">Maroc PME设备补贴30–40%</span></div>
+        <div style="margin-bottom:8px"><span style="color:var(--green);font-weight:700">✓ </span><span class="t" data-zh="新招员工前36个月免个人所得税IR" data-en="New employees: no personal income tax for 36 months">新招员工前36月免IR个税</span></div>
+        <div style="margin-bottom:8px"><span style="color:var(--green);font-weight:700">✓ </span><span class="t" data-zh="摩欧自贸协定：出口欧盟零关税" data-en="EU-Morocco FTA: zero-tariff exports to EU">摩欧自贸协定：出口欧盟零关税</span></div>
+        <div><span style="color:var(--green);font-weight:700">✓ </span><span class="t" data-zh="分红预提税RAS 2026年降至10%" data-en="Dividend withholding tax RAS reduced to 10% in 2026">分红预提税RAS降至10%（2026）</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FACTORY LAYOUT
+══════════════════════════════════════════════════ -->
+<section id="factory" class="section">
+  <div class="sec-label"><span class="t" data-zh="工厂规划" data-en="Factory Layout">工厂规划</span></div>
+  <div class="card">
+    <div class="card-title"><span class="ci ci-n">⬛</span><span class="t" data-zh="厂房布局V5（5大独立功能区 | 喷涂500-600㎡独立 | 注塑独立防粉尘 | 新增模房 | 成品仓可另租）" data-en="Factory V5 (5 Independent Zones | Coating 500-600㎡ Isolated | Injection Dust-Isolated | Mold Room | Finished Goods Can Be Rented Separately)">厂房布局V5（5大独立功能区 | 喷涂500-600㎡ | 注塑独立防粉尘 | 新增模房）</span></div>
+    <div class="fp-wrap">
+      <svg viewBox="0 0 860 530" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;font-family:-apple-system,'PingFang SC',sans-serif">
+        <!-- Ground floor label -->
+        <text x="10" y="22" font-size="11" font-weight="700" fill="#334155" class="t" data-zh="【底层 ~2,000㎡ — 5大独立区】" data-en="【Ground Floor ~2,000㎡ — 5 Independent Zones】">【底层 ~2,000㎡ — 5大独立区】</text>
+        <rect x="8" y="28" width="840" height="230" rx="6" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+
+        <!-- Z1: 制管/冲压/焊接综合区（三合一） -->
+        <rect x="16" y="36" width="310" height="140" rx="4" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+        <text x="171" y="80" font-size="12" font-weight="700" fill="#1D4ED8" text-anchor="middle" class="t" data-zh="制管/冲压/焊接综合区" data-en="Tube·Stamp·Weld Zone">制管/冲压/焊接综合区</text>
+        <text x="171" y="96" font-size="9" fill="#3B82F6" text-anchor="middle" class="t" data-zh="ERW焊管机·14/16管机·切管·弯管·冲孔·铆钉×8" data-en="ERW Tube Mill·14/16 Former·Cut·Bend·Punch·Rivet×8">ERW焊管机·14/16管机·切管·弯管·冲孔·铆钉×8</text>
+        <text x="171" y="111" font-size="9" fill="#3B82F6" text-anchor="middle" class="t" data-zh="激光切割·桌板折弯·冲压机·MIG/MAG焊接6工位" data-en="Laser Cut·Table Bend·Press·MIG/MAG Weld 6pos">激光切割·桌板折弯·冲压机·MIG/MAG焊接6工位</text>
+        <text x="171" y="126" font-size="9" fill="#6B7280" text-anchor="middle">650-700㎡ · 行车①（5T）</text>
+        <text x="171" y="168" font-size="8" fill="#2563EB" text-anchor="middle">🏗 行车① 覆盖全区</text>
+
+        <!-- Z2: 注塑区（独立封闭，粉尘隔离） -->
+        <rect x="334" y="36" width="160" height="140" rx="4" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="6,3"/>
+        <text x="414" y="75" font-size="11" font-weight="700" fill="#92400E" text-anchor="middle" class="t" data-zh="★注塑区（独立）" data-en="★Injection (Isolated)">★注塑区（独立封闭）</text>
+        <text x="414" y="89" font-size="8" fill="#D97706" text-anchor="middle" font-style="italic" class="t" data-zh="⚠ 粉尘隔离！独立通风" data-en="⚠ Dust Isolated! Independent Ventilation">⚠ 粉尘隔离，独立通风</text>
+        <text x="414" y="104" font-size="9" fill="#92400E" text-anchor="middle" class="t" data-zh="注塑机168T×3台" data-en="Injector 168T×3">注塑机168T×3台</text>
+        <text x="414" y="118" font-size="9" fill="#92400E" text-anchor="middle" class="t" data-zh="冷却塔·机械手·空压机" data-en="Cooling·Robot·Compressor">冷却塔·机械手·空压机</text>
+        <text x="414" y="132" font-size="9" fill="#6B7280" text-anchor="middle">180-220㎡</text>
+
+        <!-- Z3: 模房（新增） -->
+        <rect x="502" y="36" width="100" height="140" rx="4" fill="#E2D0F0" stroke="#7C3AED" stroke-width="1.5"/>
+        <text x="552" y="82" font-size="11" font-weight="700" fill="#5B2C8D" text-anchor="middle" class="t" data-zh="★模房" data-en="★Mold Room">★模房</text>
+        <text x="552" y="96" font-size="8" fill="#7C3AED" text-anchor="middle" class="t" data-zh="（新增）" data-en="(New)">（新增）</text>
+        <text x="552" y="111" font-size="9" fill="#5B2C8D" text-anchor="middle" class="t" data-zh="模具存放" data-en="Mold Storage">模具存放</text>
+        <text x="552" y="124" font-size="9" fill="#5B2C8D" text-anchor="middle" class="t" data-zh="维修·调试" data-en="Repair·Test">维修·调试</text>
+        <text x="552" y="137" font-size="9" fill="#6B7280" text-anchor="middle">70-90㎡</text>
+
+        <!-- Raw material store -->
+        <rect x="610" y="36" width="130" height="65" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+        <text x="675" y="66" font-size="10" font-weight="700" fill="#334155" text-anchor="middle" class="t" data-zh="原料仓" data-en="Raw Material Store">原料仓</text>
+        <text x="675" y="80" font-size="9" fill="#64748B" text-anchor="middle" class="t" data-zh="卷钢·钢丝·注塑料" data-en="Coil·Wire·Plastic">卷钢·钢丝·注塑料</text>
+        <text x="675" y="94" font-size="9" fill="#6B7280" text-anchor="middle">250㎡</text>
+
+        <!-- Power/Aux -->
+        <rect x="748" y="36" width="92" height="65" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4,2"/>
+        <text x="794" y="64" font-size="9" font-weight="700" fill="#334155" text-anchor="middle" class="t" data-zh="配电·空压·维修" data-en="Power·Compressor·Maint">配电·空压·维修</text>
+        <text x="794" y="79" font-size="9" fill="#6B7280" text-anchor="middle">120㎡</text>
+
+        <!-- Gate/Dock -->
+        <rect x="610" y="108" width="230" height="68" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="725" y="140" font-size="10" font-weight="700" fill="#334155" text-anchor="middle" class="t" data-zh="大门·卸货区·停车" data-en="Gate·Dock·Parking">大门·卸货区·停车</text>
+        <text x="725" y="156" font-size="9" fill="#64748B" text-anchor="middle" class="t" data-zh="门禁×2+监控+卡车回转空间" data-en="Access×2+CCTV+Truck space">门禁×2+监控+卡车回转</text>
+
+        <!-- Z4: Powder Coating (LARGE, 500-600sqm, bottom strip) -->
+        <rect x="16" y="182" width="584" height="70" rx="4" fill="#E0E7FF" stroke="#4F46E5" stroke-width="2.5"/>
+        <text x="308" y="210" font-size="12" font-weight="700" fill="#3730A3" text-anchor="middle" class="t" data-zh="★粉末喷涂区（独立500-600㎡ — 全产品线必经工序）" data-en="★Powder Coating Zone (Isolated 500-600㎡ — All Products Must Pass)">★粉末喷涂区（独立 500-600㎡ — 全产品线必经工序）</text>
+        <text x="308" y="226" font-size="9" fill="#4338CA" text-anchor="middle" class="t" data-zh="前处理5槽（脱脂/磷化）+ 50m链式输送 + 静电喷粉房 + 8m烘箱 · 独立消防·排风·废水处理·环保合规Loi 11-03" data-en="5-tank pre-treat + 50m chain conveyor + spray booth + 8m oven · Independent fire/ventilation/wastewater · Loi 11-03 compliant">前处理5槽 + 50m链式输送 + 静电喷房 + 8m烘箱 · 独立消防/排风/废水处理 · Loi 11-03合规</text>
+        <text x="308" y="242" font-size="8" fill="#6366F1" text-anchor="middle" class="t" data-zh="行车② 配合进出链 | 远离注塑区 | 独立封闭" data-en="Crane② assists chain | Far from injection zone | Fully isolated">行车② | 远离注塑区 | 独立封闭</text>
+
+        <!-- Crane 2 annotation -->
+        <text x="620" y="222" font-size="8" fill="#4338CA" text-anchor="middle">🏗 行车②</text>
+
+        <!-- Mezzanine -->
+        <text x="10" y="286" font-size="11" font-weight="700" fill="#334155" class="t" data-zh="【夹层 ~1,500㎡（成品仓可另租）】" data-en="【Mezzanine ~1,500㎡ (Finished Goods can be rented separately)】">【夹层 ~1,500㎡（成品仓可另租）】</text>
+        <rect x="8" y="292" width="840" height="195" rx="6" fill="none" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="8,4"/>
+
+        <!-- Sewing zone -->
+        <rect x="16" y="300" width="220" height="110" rx="4" fill="#FDF2F8" stroke="#EC4899" stroke-width="1.5"/>
+        <text x="126" y="343" font-size="11" font-weight="700" fill="#9D174D" text-anchor="middle" class="t" data-zh="缝纫区" data-en="Sewing Zone">缝纫区</text>
+        <text x="126" y="357" font-size="9" fill="#BE185D" text-anchor="middle" class="t" data-zh="★织物全进口·三同步×8·套结×2·裁剪台" data-en="★Fabric All Imported·3-sync×8·Bartack×2·Cutting">★织物全进口 · 三同步×8 · 套结×2</text>
+        <text x="126" y="370" font-size="9" fill="#6B7280" text-anchor="middle">380-420㎡</text>
+
+        <!-- Assembly -->
+        <rect x="244" y="300" width="200" height="110" rx="4" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5"/>
+        <text x="344" y="343" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle" class="t" data-zh="总装·包装" data-en="Assembly·Packing">总装·包装</text>
+        <text x="344" y="357" font-size="9" fill="#EA580C" text-anchor="middle" class="t" data-zh="装配8工位×2套+气动工具+包装台" data-en="Assembly 8-pos×2+Pneumatic+Packing">装配8工位×2套+气动工具</text>
+        <text x="344" y="370" font-size="9" fill="#6B7280" text-anchor="middle">320-360㎡</text>
+
+        <!-- QC -->
+        <rect x="452" y="300" width="130" height="110" rx="4" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5"/>
+        <text x="517" y="343" font-size="11" font-weight="700" fill="#065F46" text-anchor="middle" class="t" data-zh="QC·样品室" data-en="QC·Sample Room">QC·样品室</text>
+        <text x="517" y="358" font-size="9" fill="#059669" text-anchor="middle" class="t" data-zh="拉力·疲劳·检具" data-en="Tensile·Fatigue·Gauge">拉力·疲劳·检具</text>
+        <text x="517" y="371" font-size="9" fill="#6B7280" text-anchor="middle">140-160㎡</text>
+
+        <!-- Finished Goods (can rent) -->
+        <rect x="590" y="300" width="170" height="110" rx="4" fill="#F0FDF4" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <text x="675" y="336" font-size="11" font-weight="700" fill="#15803D" text-anchor="middle" class="t" data-zh="成品仓" data-en="Finished Goods">成品仓</text>
+        <text x="675" y="350" font-size="9" fill="#16A34A" text-anchor="middle" class="t" data-zh="★产量大可另租毗邻仓库" data-en="★ Can rent adjacent warehouse if needed">★产量大可另租毗邻仓库</text>
+        <text x="675" y="364" font-size="9" fill="#16A34A" text-anchor="middle" class="t" data-zh="行车③(5T)+叉车" data-en="Crane③(5T)+Forklift">行车③(5T)+叉车</text>
+        <text x="675" y="378" font-size="9" fill="#6B7280" text-anchor="middle">350-500㎡</text>
+
+        <!-- Office/locker -->
+        <rect x="768" y="300" width="72" height="110" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="804" y="343" font-size="9" font-weight="700" fill="#334155" text-anchor="middle" class="t" data-zh="办公·更衣" data-en="Office·Locker">办公·更衣</text>
+        <text x="804" y="357" font-size="9" fill="#64748B" text-anchor="middle">200㎡</text>
+
+        <!-- Floor notes -->
+        <text x="16" y="425" font-size="9" fill="#94A3B8" class="t" data-zh="↑ 货梯·坡道·楼梯（底层↔夹层）" data-en="↑ Cargo Lift·Ramp·Stairs (Ground↔Mezz)">↑ 货梯·坡道·楼梯（底层↔夹层）</text>
+        <text x="840" y="425" font-size="9" fill="#7C3AED" text-anchor="end" class="t" data-zh="📷 28路高清监控+门禁×6 全覆盖" data-en="📷 28ch CCTV+6 Access Points Full Coverage">📷 28路高清监控+门禁×6</text>
+
+        <!-- Total area bar -->
+        <rect x="8" y="498" width="840" height="28" rx="4" fill="#1A2E4A"/>
+        <text x="424" y="517" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" class="t"
+          data-zh="总实用面积 ≈3,500㎡（底层2,000㎡+夹层1,500㎡）| 成品仓可另租500-1,000㎡ | 喷涂区500-600㎡独立封闭"
+          data-en="Total Usable ≈3,500㎡ (Ground 2,000 + Mezz 1,500) | Finished Goods can rent extra 500-1,000㎡ | Coating zone 500-600㎡ isolated">
+          总实用面积 ≈3,500㎡ | 成品仓可另租 500-1,000㎡ | 喷涂500-600㎡独立封闭
+        </text>
+      </svg>
+      <div class="fp-legend">
+        <div class="fp-leg-item"><div class="fp-leg-dot" style="background:#DBEAFE;border:2px solid #2563EB"></div><span class="t" data-zh="制管/冲压/焊接综合区（三合一）" data-en="Tube/Stamp/Weld Zone">制管/冲压/焊接综合区</span></div>
+        <div class="fp-leg-item"><div class="fp-leg-dot" style="background:#FEF3C7;border:2px dashed #F59E0B"></div><span class="t" data-zh="★注塑区（独立封闭，粉尘隔离）" data-en="★Injection (Isolated, Dust-free)">★注塑区（独立防粉尘）</span></div>
+        <div class="fp-leg-item"><div class="fp-leg-dot" style="background:#E2D0F0;border:1px solid #7C3AED"></div><span class="t" data-zh="★模房（新增）" data-en="★Mold Room (New)">★模房（新增）</span></div>
+        <div class="fp-leg-item"><div class="fp-leg-dot" style="background:#E0E7FF;border:2px solid #4F46E5"></div><span class="t" data-zh="★粉末喷涂区（独立500-600㎡）" data-en="★Coating Zone (Isolated 500-600㎡)">★粉末喷涂区（500-600㎡）</span></div>
+        <div class="fp-leg-item"><div class="fp-leg-dot" style="background:#FDF2F8;border:1px solid #EC4899"></div><span class="t" data-zh="缝纫区（织物全进口）" data-en="Sewing Zone (Fabric all imported)">缝纫区（织物全进口）</span></div>
+        <div class="fp-leg-item"><div class="fp-leg-dot" style="background:#F0FDF4;border:1px dashed #22C55E"></div><span class="t" data-zh="成品仓（可另租）" data-en="Finished Goods (can rent)">成品仓（可另租）</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     EQUIPMENT
+══════════════════════════════════════════════════ -->
+<section id="equipment" class="section">
+  <div class="sec-label"><span class="t" data-zh="设备清单" data-en="Equipment List">设备清单</span></div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="padding:1rem 1.5rem;border-bottom:1px solid var(--g100)">
+      <div class="card-title" style="margin:0"><span class="ci ci-b">⚙</span><span class="t" data-zh="全链条设备清单（48类，卷钢→成品）" data-en="Full-Chain Equipment List (48 categories, coil → finished goods)">全链条设备清单（48类，卷钢→成品）</span></div>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="data-table" style="min-width:700px">
+      <thead><tr>
+        <th class="t" data-zh="编号" data-en="No.">编号</th>
+        <th class="t" data-zh="设备名称" data-en="Equipment">设备名称</th>
+        <th class="t" data-zh="台数" data-en="Qty">台数</th>
+        <th class="r t" data-zh="金额（万CNY）" data-en="Cost (¥10k)">金额（万CNY）</th>
+        <th class="t" data-zh="必要性" data-en="Necessity">必要性</th>
+        <th class="t" data-zh="用于产品" data-en="Used For">用于产品</th>
+      </tr></thead>
+      <tbody>
+        <tr class="sub-hdr"><td colspan="6" class="t" data-zh="▌ 制管线" data-en="▌ Tube Mill Line">▌ 制管线</td></tr>
+        <tr><td>A1</td><td class="t" data-zh="★激光焊管机 φ30-40mm（含开卷/校平）" data-en="★ Laser Weld Tube Mill φ30-40mm (with uncoiler/leveler)">★激光焊管机 φ30-40mm</td><td>1套</td><td class="r">130</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span><span class="badge b-new t" data-zh="新增" data-en="New">新增</span></td><td class="t" data-zh="椅架·桌腿·庭院伞架管" data-en="Chair/Table/Umbrella tubes">椅架·桌腿·庭院伞架</td></tr>
+        <tr><td>A2</td><td class="t" data-zh="★14管成型机（1V1，冲孔一体）" data-en="★ φ14 Tube Former (1V1, punch integrated)">★14管成型机（1V1，冲孔一体）</td><td>1台</td><td class="r">13</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="伞架细管·椅架细管" data-en="Umbrella/Chair fine tubes">伞架细管·椅架细管</td></tr>
+        <tr><td>A3</td><td class="t" data-zh="★16管成型机（1V1）" data-en="★ φ16 Tube Former (1V1)">★16管成型机（1V1）</td><td>1台</td><td class="r">11</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="椅架·蛋卷桌桌腿" data-en="Chair frame / egg-roll table legs">椅架·蛋卷桌桌腿</td></tr>
+        <tr><td>A4</td><td class="t" data-zh="★冲孔机（1V1）×2台" data-en="★ Punching Machine (1V1) ×2">★冲孔机（1V1）×2台</td><td>2台</td><td class="r">3</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="所有管件铆钉孔·连接孔" data-en="All rivet/connection holes">所有管件铆钉孔</td></tr>
+        <tr><td>A5</td><td class="t" data-zh="★特斯林折弯冲孔一体机" data-en="★ Texilene Bend-Punch All-in-One">★特斯林折弯冲孔一体机</td><td>1台</td><td class="r">16</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="特斯林椅·弹簧椅（专用）" data-en="Texilene chair ONLY">特斯林椅（专用）</td></tr>
+        <tr><td>A6</td><td class="t" data-zh="切管机（冷锯，φ6-60mm）×2台" data-en="Cold Saw Tube Cutter φ6-60mm ×2">切管机（冷锯）×2台</td><td>2台</td><td class="r">12</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="全产品线通用" data-en="All product lines">全产品线通用</td></tr>
+        <tr><td>A7</td><td class="t" data-zh="NC弯管机 DW38×2台" data-en="NC Tube Bender DW38 ×2">NC弯管机 DW38×2台</td><td>2台</td><td class="r">12</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="折叠椅架·桌腿·克米特椅" data-en="Folding chairs/table legs">折叠椅架·桌腿</td></tr>
+        <tr><td>A8</td><td class="t" data-zh="液压冲孔机×3台" data-en="Hydraulic Multi-Punch ×3">液压冲孔机×3台</td><td>3台</td><td class="r">7.5</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="全线批量冲孔" data-en="Batch punching all lines">全线批量冲孔</td></tr>
+        <tr><td>A9</td><td class="t" data-zh="缩管/扩管/压扁机×2台" data-en="Tube End Former ×2">缩管/扩管/压扁机×2台</td><td>2台</td><td class="r">6</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="管端插接成型" data-en="Tube end forming">管端插接成型</td></tr>
+        <tr><td>A10</td><td class="t" data-zh="★铆钉机×8台" data-en="★ Riveting Machine ×8">★铆钉机×8台</td><td>8台</td><td class="r">16</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="全产品铆接装配" data-en="All products rivet assembly">全产品铆接装配</td></tr>
+        <tr><td>A17</td><td class="t" data-zh="钢丝切线机（伞骨专用）" data-en="Wire Cutting Machine (umbrella rib)">钢丝切线机（伞骨专用）</td><td>1台</td><td class="r">3</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="沙滩伞·庭院伞伞骨" data-en="Beach/Patio umbrella ribs">沙滩伞·庭院伞伞骨</td></tr>
+        <tr class="sub-hdr"><td colspan="6" class="t" data-zh="▌ 冲压成型" data-en="▌ Stamping & Forming">▌ 冲压成型</td></tr>
+        <tr><td>B1</td><td class="t" data-zh="★激光切割机×1台" data-en="★ Laser Cutter ×1">★激光切割机×1台</td><td>1台</td><td class="r">13</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="蛋卷桌桌板·异形件" data-en="Egg-roll table tops / complex parts">蛋卷桌桌板·异形件</td></tr>
+        <tr><td>B2</td><td class="t" data-zh="★桌板折弯机×1台" data-en="★ Table Top Bending Machine ×1">★桌板折弯机×1台</td><td>1台</td><td class="r">6.5</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="蛋卷桌（专用，无替代）" data-en="Egg-roll table ONLY (no substitute)">蛋卷桌（专用，无替代）</td></tr>
+        <tr><td>B3</td><td class="t" data-zh="★扣压桌板塑料件机×3台" data-en="★ Table Edge Plastic Clamp ×3">★扣压桌板塑料件机×3台</td><td>3台</td><td class="r">3.5</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="蛋卷桌侧边条（专用）" data-en="Egg-roll table edge strip">蛋卷桌侧边条</td></tr>
+        <tr><td>B4</td><td class="t" data-zh="冲压机+模具（3套）" data-en="Stamping Press + 3 Dies">冲压机+模具（3套）</td><td>1套</td><td class="r">15</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="巢座·端盖·连接片" data-en="Hub/Cap/Connector plate">巢座·端盖·连接片</td></tr>
+        <tr class="sub-hdr"><td colspan="6" class="t" data-zh="▌ 注塑线（替代进口DTS 40%高税塑件）" data-en="▌ Injection Mold Line (replaces imported plastic parts DTS 40%)">▌ 注塑线（替代进口DTS 40%高税塑件）</td></tr>
+        <tr><td>C1</td><td class="t" data-zh="★注塑机168T×3台" data-en="★ Injection Molder 168T ×3">★注塑机168T×3台</td><td>3台</td><td class="r">60</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="端盖·脚套·边条（全线自产，省DTS40%）" data-en="Caps/Feet/Strips (all self-made, saves DTS40%)">端盖·脚套·边条（全线自产）</td></tr>
+        <tr><td>C2</td><td class="t" data-zh="冷却塔（注塑配套）" data-en="Cooling Tower (injection)">冷却塔</td><td>1台</td><td class="r">0.6</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="注塑机配套" data-en="With injection molders">注塑机配套</td></tr>
+        <tr><td>C3</td><td class="t" data-zh="★机械手×3台（注塑取料）" data-en="★ Robot Arm ×3 (injection pickup)">★机械手×3台</td><td>3台</td><td class="r">4.3</td><td><span class="badge b-opt t" data-zh="建议" data-en="Advised">建议</span></td><td class="t" data-zh="可延后，先人工取件" data-en="Can delay, manual first">可延后，先人工取件</td></tr>
+        <tr><td>C4</td><td class="t" data-zh="空压机22kW（注塑专用）" data-en="22kW Compressor (injection)">空压机22kW（注塑专用）</td><td>1台</td><td class="r">4</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="独立气源" data-en="Independent air supply">独立气源</td></tr>
+        <tr class="sub-hdr"><td colspan="6" class="t" data-zh="▌ 粉末喷涂线" data-en="▌ Powder Coating Line">▌ 粉末喷涂线</td></tr>
+        <tr><td>D1</td><td class="t" data-zh="全自动粉末喷涂线（链式50m）" data-en="Auto Powder Coating Line (50m chain)">全自动粉末喷涂线（链式50m）</td><td>1条</td><td class="r">160</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="全产品表面处理（不可或缺）" data-en="All products surface finish (essential)">全产品表面处理</td></tr>
+        <tr><td>D2</td><td class="t" data-zh="MIG/MAG焊接站+夹具（6工位）" data-en="MIG/MAG Welding Station + Jigs (6 pos)">MIG/MAG焊接站（6工位）</td><td>1套</td><td class="r">22</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="椅架·桌架框架焊接" data-en="Chair/table frame welding">椅架·桌架框架</td></tr>
+        <tr><td>D3</td><td class="t" data-zh="空压机15kW×2台（喷涂/气动）" data-en="15kW Compressor ×2 (coating/pneumatic)">空压机15kW×2台</td><td>2台</td><td class="r">3.6</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="全线气动工具" data-en="All pneumatic tools">全线气动工具</td></tr>
+        <tr class="sub-hdr"><td colspan="6" class="t" data-zh="▌ 缝纫线" data-en="▌ Sewing Line">▌ 缝纫线</td></tr>
+        <tr><td>E1</td><td class="t" data-zh="三同步缝纫机×8+套结机×2+模板机×1" data-en="3-sync Sewing ×8 + Bartack ×2 + Template ×1">三同步缝纫机×8+套结×2</td><td>11台</td><td class="r">24.5</td><td><span class="badge b-core t" data-zh="核心" data-en="Core">核心</span></td><td class="t" data-zh="椅布·伞面·特斯林面" data-en="Chair fabric/umbrella cloth/texilene">椅布·伞面缝制</td></tr>
+        <tr><td>E2</td><td class="t" data-zh="圆刀裁剪机+裁剪台×2套" data-en="Circular Knife + Cutting Table ×2">裁剪机+裁剪台×2套</td><td>2套</td><td class="r">2.2</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="布料裁剪" data-en="Fabric cutting">布料裁剪</td></tr>
+        <tr class="sub-hdr"><td colspan="6" class="t" data-zh="▌ 仓储·搬运·通用" data-en="▌ Storage / Handling / General">▌ 仓储·搬运·通用</td></tr>
+        <tr><td>F1</td><td class="t" data-zh="★电动桥式行车5T×3台" data-en="★ 5T Bridge Crane ×3">★电动桥式行车5T×3台</td><td>3台</td><td class="r">15</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="底层2台+夹层1台" data-en="Ground 2 + Mezzanine 1">底层2台+夹层1台</td></tr>
+        <tr><td>F2</td><td class="t" data-zh="★电动叉车1.5T×4台" data-en="★ 1.5T Electric Forklift ×4">★电动叉车1.5T×4台</td><td>4台</td><td class="r">14</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="双层各2台" data-en="2 per floor">双层各2台</td></tr>
+        <tr><td>F3</td><td class="t" data-zh="★全厂监控（28路高清+NVR+门禁）" data-en="★ 28-Channel CCTV + NVR + Access">★全厂监控28路+门禁×6</td><td>1套</td><td class="r">5</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="车间/仓库/周界/门禁" data-en="Shop/Warehouse/Perimeter/Gate">车间/仓库/周界/门禁</td></tr>
+        <tr><td>F4</td><td class="t" data-zh="配电柜+电缆+气路布管（全厂）" data-en="Switchboard + Cable + Air Piping">配电柜+电缆+气路（全厂）</td><td>1套</td><td class="r">30</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="500kW总负载" data-en="500kW total load">500kW总负载</td></tr>
+        <tr><td>F5</td><td class="t" data-zh="质检设备（拉力/疲劳/检具）" data-en="QC Equipment (tensile/fatigue/gauge)">质检设备全套</td><td>1套</td><td class="r">6</td><td><span class="badge b-must t" data-zh="必须" data-en="Must">必须</span></td><td class="t" data-zh="出口欧洲EN认证必须" data-en="Required for EU EN certification">出口欧洲EN认证</td></tr>
+        <tr class="total-row"><td colspan="3" class="t" data-zh="★ 设备总计（到摩洛哥含税含运估算）" data-en="★ Equipment Total (incl. tax & shipping to Morocco)">★ 设备总计（到摩洛哥含税含运）</td><td class="r">约580万 CNY</td><td colspan="2" style="color:#34D399" class="t" data-zh="约826万 MAD" data-en="~8.26M MAD">约826万 MAD</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FINANCIALS
+══════════════════════════════════════════════════ -->
+<section id="financials" class="section">
+  <div class="sec-label"><span class="t" data-zh="财务分析" data-en="Financial Analysis">财务分析</span></div>
+
+  <!-- 数据来源说明 -->
+  <div style="background:var(--green-lt);border:1px solid #86EFAC;border-radius:var(--r);padding:10px 16px;margin-bottom:1rem;font-size:12px;color:var(--green);line-height:1.7">
+    <strong class="t" data-zh="★ 财务数据来源（V5.0 — 所有数字均有真实依据）：" data-en="★ Data Sources (V5.0 — All figures verified):">★ 财务数据来源（V5.0）：</strong>
+    <span class="t" data-zh="销量×1.5（伞架160,560套/椅子225,000件/桌子64,500件=合计45万件）| 价格=真实批发出货价（伞架53DH/椅67.5DH/桌110DH）| 设备费用修正（ERW制管机130万→35万，含模具+模房30万）| 织物全进口DTS 10%（无本地替代）| 注塑件自产替代DTS 40% | 建厂节税约120万MAD/年" data-en="Volume×1.5 (Umbrella 160,560/Chair 225,000/Table 64,500 = 450,060 total) | Real wholesale prices (Umbrella 53DH/Chair 67.5DH/Table 110DH) | Equipment corrected (ERW tube mill 130→35¥10k, incl. molds+mold room 30¥10k) | Fabric all imported DTS 10% (no local substitute) | Plastic parts self-made replaces DTS 40% | Annual tax saving ~1.2M MAD">销量×1.5=45万件 | 真实批发价 | ERW制管机修正35万 | 织物全进口 | 注塑自产省DTS40%</span>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid" style="margin-bottom:1rem">
+    <div class="kpi k-navy"><div class="kv">2,114<span style="font-size:14px">万</span></div><div class="kl t" data-zh="总前期投入（MAD，含预备金）" data-en="Total Investment (MAD incl. contingency)">总前期投入（MAD）</div></div>
+    <div class="kpi k-blue"><div class="kv">3,079<span style="font-size:14px">万</span></div><div class="kl t" data-zh="年营收（满产×1.5量，真实价格）" data-en="Annual Revenue (full cap ×1.5 vol, real prices)">满产年营收（×1.5量）</div></div>
+    <div class="kpi k-teal"><div class="kv">450<span style="font-size:14px">万件</span></div><div class="kl t" data-zh="年销量（×1.5，伞架+椅子+桌子合计）" data-en="Annual Volume (×1.5, all products)">年销量（×1.5）</div></div>
+    <div class="kpi k-green"><div class="kv">1,883<span style="font-size:14px">万</span></div><div class="kl t" data-zh="Y3满产+出口净利润（ZAI免税）" data-en="Y3 Full+Export Net Profit (ZAI tax-free)">Y3净利润（满产+出口）</div></div>
+    <div class="kpi k-amber"><div class="kv">~2.2<span style="font-size:14px">年</span></div><div class="kl t" data-zh="静态回本（Y1-Y3均值）" data-en="Static Payback (Y1-Y3 avg)">静态回本周期</div></div>
+  </div>
+
+  <div class="g2">
+    <!-- 投入汇总 -->
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="padding:.9rem 1.2rem;border-bottom:1px solid var(--g100)">
+        <div class="card-title" style="margin:0"><span class="ci ci-a">$</span><span class="t" data-zh="前期投入汇总" data-en="Investment Breakdown">前期投入汇总</span></div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th class="t" data-zh="项目" data-en="Item">项目</th><th class="r t" data-zh="CNY" data-en="CNY">CNY</th><th class="r t" data-zh="MAD" data-en="MAD">MAD</th></tr></thead>
+        <tbody>
+          <tr><td class="t" data-zh="A. 设备（含运/关税/安装）" data-en="A. Equipment (incl. freight/tariff)">A. 设备</td><td class="r">580万</td><td class="r">826万</td></tr>
+          <tr><td class="t" data-zh="B. 厂房（夹层+地坪+电力）" data-en="B. Factory (mezzanine+floor+power)">B. 厂房工程</td><td class="r">211万</td><td class="r">300万</td></tr>
+          <tr><td class="t" data-zh="C. 运输·安装·调试" data-en="C. Freight·Install·Commissioning">C. 运输·安装</td><td class="r">67万</td><td class="r">96万</td></tr>
+          <tr><td class="t" data-zh="D. 注册·许可·法律" data-en="D. Registration·License·Legal">D. 注册·许可</td><td class="r">13万</td><td class="r">19万</td></tr>
+          <tr><td class="t" data-zh="E. 人员·培训·试产" data-en="E. Staff·Training·Trial">E. 人员·培训</td><td class="r">15万</td><td class="r">22万</td></tr>
+          <tr><td class="t" data-zh="F. 半年运营资金" data-en="F. 6-Month Working Capital">F. 半年运营资金</td><td class="r">583万</td><td class="r">833万</td></tr>
+          <tr><td class="t" data-zh="G. 预备金（A-F×12%）" data-en="G. Contingency (A-F×12%)">G. 预备金12%</td><td class="r">176万</td><td class="r">252万</td></tr>
+          <tr class="total-row"><td class="t" data-zh="★ 合计" data-en="★ Total">★ 合计</td><td class="r">1,645万</td><td class="r" style="color:#34D399">2,348万</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 5年预测（V5 ×1.5量+出口+铝管）-->
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="padding:.9rem 1.2rem;border-bottom:1px solid var(--g100)">
+        <div class="card-title" style="margin:0"><span class="ci ci-t">📈</span><span class="t" data-zh="5年战略财务预测（×1.5量 | 爬坡 | Y3出口 | Y4铝管 | ZAI免税）" data-en="5-Year Strategic Forecast (×1.5 vol | Ramp | Y3 Export | Y4 Aluminum | ZAI tax-free)">5年战略财务预测（V5）</span></div>
+      </div>
+      <table class="data-table">
+        <thead><tr>
+          <th class="t" data-zh="科目（万MAD）" data-en="Item (¥10k MAD)">科目（万MAD）</th>
+          <th class="r t" data-zh="Y1 2027（45%）" data-en="Y1 2027 (45%)">Y1 2027<br><span style="font-weight:400;font-size:10px">45%·本土</span></th>
+          <th class="r t" data-zh="Y2 2028（75%）" data-en="Y2 2028 (75%)">Y2 2028<br><span style="font-weight:400;font-size:10px">75%·本土80%</span></th>
+          <th class="r t" data-zh="Y3 2029（满产+出口）" data-en="Y3 2029 (Full+Export)">Y3 2029<br><span style="font-weight:400;font-size:10px">100%+中非/欧洲</span></th>
+          <th class="r t" data-zh="Y4 2030（铝管扩产）" data-en="Y4 2030 (Aluminum)">Y4 2030<br><span style="font-weight:400;font-size:10px">铝管+数控</span></th>
+          <th class="r t" data-zh="Y5 2031（稳定）" data-en="Y5 2031 (Stable)">Y5 2031<br><span style="font-weight:400;font-size:10px">欧洲稳定</span></th>
+        </tr></thead>
+        <tbody>
+          <tr class="hi-row">
+            <td class="t" data-zh="★ 年度营收（含出口增量）" data-en="★ Revenue (incl. export)">★ 年度营收</td>
+            <td class="r">1,386</td><td class="r">2,309</td><td class="r">3,695</td><td class="r">4,911</td><td class="r">5,489</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="  原材料成本（按产能比例）" data-en="  Raw material (by capacity)">　原材料成本</td>
+            <td class="r" style="color:var(--g500)">456</td><td class="r" style="color:var(--g500)">760</td><td class="r" style="color:var(--g500)">1,071</td><td class="r" style="color:var(--g500)">1,250</td><td class="r" style="color:var(--g500)">1,420</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="  人工成本（25→45→65→85人爬坡）" data-en="  Labor (25→45→65→85 staff ramp)">　人工（爬坡招募）</td>
+            <td class="r" style="color:var(--g500)">353</td><td class="r" style="color:var(--g500)">510</td><td class="r" style="color:var(--g500)">667</td><td class="r" style="color:var(--g500)">667.5</td><td class="r" style="color:var(--g500)">667.5</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="  租金（固定84万/年）" data-en="  Rent (fixed 840k/yr)">　租金（固定）</td>
+            <td class="r" style="color:var(--g500)">84.0</td><td class="r" style="color:var(--g500)">84.0</td><td class="r" style="color:var(--g500)">84.0</td><td class="r" style="color:var(--g500)">84.0</td><td class="r" style="color:var(--g500)">84.0</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="  水电气+维修+行政" data-en="  Utilities+Maintenance+Admin">　水电气+维修+行政</td>
+            <td class="r" style="color:var(--g500)">64</td><td class="r" style="color:var(--g500)">86</td><td class="r" style="color:var(--g500)">110</td><td class="r" style="color:var(--g500)">115</td><td class="r" style="color:var(--g500)">120</td>
+          </tr>
+          <tr style="background:var(--g50)">
+            <td class="t" data-zh="年度运营成本合计" data-en="Total Operating Cost">运营成本合计</td>
+            <td class="r" style="font-weight:600">957</td><td class="r" style="font-weight:600">1,440</td><td class="r" style="font-weight:600">1,932</td><td class="r" style="font-weight:600">2,129</td><td class="r" style="font-weight:600">2,324</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="+ 建厂节税效益（进口替代）" data-en="+ Tax saving (import substitution)">+ 建厂节税效益</td>
+            <td class="r" style="color:var(--green)">+54</td><td class="r" style="color:var(--green)">+90</td><td class="r" style="color:var(--green)">+120</td><td class="r" style="color:var(--green)">+126</td><td class="r" style="color:var(--green)">+132</td>
+          </tr>
+          <tr style="background:var(--g50)">
+            <td class="t" data-zh="EBITDA" data-en="EBITDA">EBITDA</td>
+            <td class="r" style="font-weight:700">483</td><td class="r" style="font-weight:700">959</td><td class="r" style="font-weight:700">1,883</td><td class="r" style="font-weight:700">2,908</td><td class="r" style="font-weight:700">3,297</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="企业所得税IS（ZAI前5年=0）" data-en="Corp Tax IS (ZAI 5yr=0)">IS税（ZAI=0）</td>
+            <td class="r" style="color:var(--green)">0</td><td class="r" style="color:var(--green)">0</td><td class="r" style="color:var(--green)">0</td><td class="r" style="color:var(--green)">0</td><td class="r" style="color:var(--green)">0</td>
+          </tr>
+          <tr class="total-row">
+            <td class="t" data-zh="★ 税后净利润（ZAI免税）" data-en="★ Net Profit (ZAI tax-free)">★ 税后净利润</td>
+            <td class="r" style="color:#34D399">155.3</td><td class="r" style="color:#34D399">419.0</td><td class="r" style="color:#34D399">644.6</td><td class="r" style="color:#34D399">717.7</td><td class="r" style="color:#34D399">791.0</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="净利润率" data-en="Net Margin">净利润率</td>
+            <td class="r">34.9%</td><td class="r">41.5%</td><td class="r">51.0%</td><td class="r">59.2%</td><td class="r">60.1%</td>
+          </tr>
+          <tr>
+            <td class="t" data-zh="累计净现金流（起点-1,423万）" data-en="Cumulative NCF (start -1,423万)">累计净现金流</td>
+            <td class="r" style="color:var(--amber);font-weight:700">-1,631</td>
+            <td class="r" style="color:var(--amber);font-weight:700">-672</td>
+            <td class="r" style="color:var(--amber);font-weight:700">+1,211</td>
+            <td class="r" style="color:var(--teal);font-weight:700">+4,119</td>
+            <td class="r" style="color:var(--teal);font-weight:700">+7,416</td>
+          </tr>
+          <tr>
+            <td colspan="6" style="font-size:11px;color:var(--g500);padding:8px 12px;font-style:italic" class="t"
+              data-zh="★V5：销量×1.5=45万件/年 | Y3中非+欧洲出口+20% | Y4铝管设备310万CNY追加 | 织物全进口DTS10%已含成本 | ERW制管机修正35万CNY | Y3累计净现金流转正"
+              data-en="Revenue based on real wholesale prices: Umbrella 53DH×107,040 + Chair 67.5DH×150,000 + Table 110DH×43,000 = 20.53M MAD (full capacity). Break-even on cumulative NCF in Y4.">
+              ★V5：销量×1.5=45万件/年 | Y3中非+欧洲出口+20%营收 | Y4铝管设备310万CNY追加另计 | 织物全进口DTS 10%已含 | ERW制管机修正35万CNY | Y3累计净现金流转正
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="g2" style="margin-top:1rem">
+    <div class="card"><div class="card-title"><span class="ci ci-b">📊</span><span class="t" data-zh="5年营收与净利润对比" data-en="5-Year Revenue vs Net Profit">5年营收与净利润</span></div><div style="position:relative;height:220px;width:100%"><canvas id="chartPL"></canvas></div></div>
+    <div class="card"><div class="card-title"><span class="ci ci-g">💰</span><span class="t" data-zh="前期投入结构" data-en="Investment Structure">前期投入结构</span></div><div style="position:relative;height:280px;width:100%"><canvas id="chartInvest"></canvas></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     TIMELINE
+══════════════════════════════════════════════════ -->
+<section id="timeline" class="section">
+  <div class="sec-label"><span class="t" data-zh="建设进度" data-en="Construction Timeline">建设进度</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title"><span class="ci ci-a">📅</span><span class="t" data-zh="分阶段时间与资金计划" data-en="Phased Timeline & Capital Plan">分阶段时间与资金计划</span></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot p0">P0</div>
+          <div class="tl-month t" data-zh="2026年6–7月 · 立即启动" data-en="Jun–Jul 2026 · Start Now">2026年6–7月 · 立即启动</div>
+          <div class="tl-title t" data-zh="注册·选址·设备询价" data-en="Registration · Site · Equipment RFQ">注册·选址·设备询价</div>
+          <div class="tl-body t" data-zh="公司SARL注册（7–15天）；CRI工业许可+ZAI设备关税豁免申请；Berrechid/Bouskoura工业区选址谈判；向BLMA/Galin/海天发送询价PI" data-en="SARL registration (7–15 days); CRI license + ZAI tariff exemption; Site negotiation in Berrechid/Bouskoura; RFQ to BLMA/Galin/Haitian">公司注册；ZAI豁免申请；选址谈判；设备PI</div>
+          <div class="tl-budget t" data-zh="资金需求：80–120万 MAD" data-en="Capital: 0.8–1.2M MAD">资金需求：80–120万 MAD</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot p1">P1</div>
+          <div class="tl-month t" data-zh="2026年7–9月 · 厂房+设备首付" data-en="Jul–Sep 2026 · Factory + Equipment Deposit">2026年7–9月 · 厂房+设备首付</div>
+          <div class="tl-title t" data-zh="签厂房·下设备首付·启动施工" data-en="Sign Lease · Deposit on Equipment · Start Construction">签厂房·下设备首付·启动施工</div>
+          <div class="tl-body t" data-zh="厂房签约押金；夹层钢结构施工启动；行车轨道预埋（★装修时同步，否则费用翻倍）；喷涂线/制管机/注塑机首付30%；招聘启动" data-en="Lease deposit; mezzanine steel start; crane track embed (★MUST be done during renovation); 30% deposit on coating/tube/injection; hiring begins">厂房押金；夹层施工；行车轨道预埋；设备首付30%；招聘</div>
+          <div class="tl-budget t" data-zh="资金需求：700–900万 MAD" data-en="Capital: 7–9M MAD">资金需求：700–900万 MAD</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot p2">P2</div>
+          <div class="tl-month t" data-zh="2026年10–12月 · 设备到港" data-en="Oct–Dec 2026 · Equipment Arrival">2026年10–12月 · 设备到港</div>
+          <div class="tl-title t" data-zh="清关·安装·缝纫线率先量产" data-en="Customs · Install · Sewing Line First Production">清关·安装·缝纫线率先量产</div>
+          <div class="tl-body t" data-zh="设备海运到卡萨布兰卡清关（约45天）；缝纫线（交期短）11月安装完成率先试产；中国工程师赴摩安装调试制管/喷涂/注塑设备；监控/消防/门禁系统安装" data-en="Equipment arrives Casablanca customs; sewing line first (short lead time) → production Nov; Chinese engineers commission tube/coating/injection; CCTV/fire/access installed">设备到港清关；缝纫线11月量产；工程师安装调试</div>
+          <div class="tl-budget t" data-zh="资金需求：300–400万 MAD" data-en="Capital: 3–4M MAD">资金需求：300–400万 MAD</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot p3">P3</div>
+          <div class="tl-month t" data-zh="2027年1–3月 · 旺季" data-en="Jan–Mar 2027 · Peak Season">2027年1–3月 · 旺季</div>
+          <div class="tl-title t" data-zh="缝纫+总装满产，制管/喷涂爬坡" data-en="Sewing+Assembly Full Speed, Tube/Coating Ramping">缝纫+总装满产，制管/喷涂爬坡</div>
+          <div class="tl-body t" data-zh="旺季用进口成品零部件+本地组装（Made in Morocco）保供客户；制管线/喷涂线2月–3月调试；注意：2027年斋月约2月底–3月底，排产需提前" data-en="Peak season: import components + local assembly (Made in Morocco); tube/coating commissioning Feb–Mar; Note: Ramadan ~late Feb–Mar 2027, plan ahead">旺季进口+本地装配保供；制管喷涂调试；注意斋月</div>
+          <div class="tl-budget t" data-zh="资金需求：400–600万 MAD（运营资金）" data-en="Capital: 4–6M MAD (working capital)">资金需求：400–600万 MAD</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot p4">P4</div>
+          <div class="tl-month t" data-zh="2027年Q3起 · 全线满产" data-en="Q3 2027 onwards · Full Production">2027年Q3起 · 全线满产</div>
+          <div class="tl-title t" data-zh="全链条自产，冲击2028年旺季" data-en="Full self-manufacturing, targeting 2028 peak">全链条自产，冲击2028年旺季</div>
+          <div class="tl-body t" data-zh="所有产线稳定量产；注塑件全部自产（停止进口DTS40%塑件）；考虑申请Maroc PME设备补贴（约250–330万MAD）；CE认证推进；欧洲出口开拓" data-en="All lines stable; self-made plastic parts (stop 40% DTS imports); apply Maroc PME subsidy (~2.5–3.3M MAD); CE certification; expand to EU export">全线稳产；注塑自产；申请补贴；CE认证；欧洲出口</div>
+          <div class="tl-budget t" data-zh="进入正现金流阶段" data-en="Positive Cash Flow Phase">进入正现金流阶段</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Risk -->
+    <div class="card">
+      <div class="card-title"><span class="ci ci-a">⚠</span><span class="t" data-zh="主要风险与应对" data-en="Key Risks & Mitigations">主要风险与应对</span></div>
+      <div style="overflow-x:auto">
+      <table class="data-table" style="font-size:12px;min-width:400px">
+        <thead><tr><th class="t" data-zh="风险项" data-en="Risk">风险项</th><th class="t" data-zh="概率" data-en="Prob">概率</th><th class="t" data-zh="影响" data-en="Impact">影响</th><th class="t" data-zh="缓解措施" data-en="Mitigation">缓解措施</th></tr></thead>
+        <tbody>
+          <tr><td class="t" data-zh="设备交期延误" data-en="Equipment delay">设备交期延误</td><td><span class="prob-md t" data-zh="中" data-en="Med">中</span></td><td><span class="imp-hi t" data-zh="高" data-en="High">高</span></td><td class="t" data-zh="提前3–4月下单；约定逾期违约金" data-en="Order 3–4 months early; penalty clause">提前3–4月下单</td></tr>
+          <tr><td class="t" data-zh="行车轨道未预埋" data-en="Crane track not pre-installed">行车轨道未预埋</td><td><span class="prob-hi t" data-zh="高" data-en="High">高</span></td><td><span class="imp-hi t" data-zh="高" data-en="High">高</span></td><td class="t" data-zh="签租约明确条款；装修时同步施工" data-en="Clarify in lease; install during renovation">签租约明确条款</td></tr>
+          <tr><td class="t" data-zh="喷涂环保许可延期" data-en="Coating env. permit delay">喷涂环保许可延期</td><td><span class="prob-md t" data-zh="中" data-en="Med">中</span></td><td><span class="imp-hi t" data-zh="高" data-en="High">高</span></td><td class="t" data-zh="提前6月申报Loi 11-03" data-en="Apply Loi 11-03 6 months early">提前6月申报</td></tr>
+          <tr><td class="t" data-zh="注塑工艺师招募难" data-en="Injection specialist hard to recruit">注塑工艺师招募难</td><td><span class="prob-hi t" data-zh="高" data-en="High">高</span></td><td><span class="imp-hi t" data-zh="高" data-en="High">高</span></td><td class="t" data-zh="中国工程师赴摩培训6–8周" data-en="Chinese engineer trains locals 6–8 weeks">中国工程师培训</td></tr>
+          <tr><td class="t" data-zh="旺季备货与建厂资金冲突" data-en="Peak season stock vs capex conflict">旺季备货资金冲突</td><td><span class="prob-hi t" data-zh="高" data-en="High">高</span></td><td><span class="imp-hi t" data-zh="高" data-en="High">高</span></td><td class="t" data-zh="独立账户管理，提前备货" data-en="Separate accounts, pre-stock early">独立账户管理</td></tr>
+          <tr><td class="t" data-zh="2027年斋月影响调试进度" data-en="2027 Ramadan impacts commissioning">2027斋月影响调试</td><td><span class="prob-hi t" data-zh="高" data-en="High">高</span></td><td><span class="prob-md t" data-zh="中" data-en="Med">中</span></td><td class="t" data-zh="调试计划提前1个月" data-en="Schedule commissioning 1 month early">调试提前1个月</td></tr>
+          <tr><td class="t" data-zh="汇率波动MAD/CNY" data-en="MAD/CNY exchange rate">汇率波动</td><td><span class="prob-md t" data-zh="中" data-en="Med">中</span></td><td><span class="prob-md t" data-zh="中" data-en="Med">中</span></td><td class="t" data-zh="分批换汇；本地采购对冲" data-en="Batch exchange; local sourcing hedge">分批换汇</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <hr class="divider" style="border:none;border-top:1px solid var(--g200);margin:1rem 0">
+      <!-- 遗漏清单 -->
+      <div class="card-title"><span class="ci ci-n">✓</span><span class="t" data-zh="关键前置事项检查清单" data-en="Critical Pre-Flight Checklist">关键前置事项清查</span></div>
+      <div style="font-size:13px;line-height:2;color:var(--g700)">
+        <div><span style="color:var(--amber);font-weight:700">□ </span><span class="t" data-zh="本地合伙人/法律顾问（法语/阿语沟通）" data-en="Local partner/lawyer (French/Arabic)">本地合伙人/法律顾问（法语/阿语）</span></div>
+        <div><span style="color:var(--amber);font-weight:700">□ </span><span class="t" data-zh="工业区电力容量确认（≥500kW）" data-en="Industrial zone power capacity confirmed (≥500kW)">工业区电力容量确认（≥500kW）</span></div>
+        <div><span style="color:var(--amber);font-weight:700">□ </span><span class="t" data-zh="CE产品认证（出口欧洲必须，提前3–6月申请）" data-en="CE product certification (EU export, apply 3–6 months early)">CE认证（出口欧洲，提前3–6月）</span></div>
+        <div><span style="color:var(--amber);font-weight:700">□ </span><span class="t" data-zh="注塑/冲压模具单独设计（与设备同步推进）" data-en="Molds designed separately (parallel to equipment)">注塑/冲压模具单独设计</span></div>
+        <div><span style="color:var(--amber);font-weight:700">□ </span><span class="t" data-zh="每类主材≥2家备选供应商" data-en="≥2 backup suppliers per material">每类主材≥2家备选供应商</span></div>
+        <div><span style="color:var(--amber);font-weight:700">□ </span><span class="t" data-zh="Maroc PME设备补贴申请（最高250–330万MAD）" data-en="Maroc PME equipment subsidy (up to 2.5–3.3M MAD)">Maroc PME设备补贴申请</span></div>
+        <div><span style="color:var(--amber);font-weight:700">□ </span><span class="t" data-zh="TVA退税资金计划（占用约200–400万MAD）" data-en="TVA refund cash flow plan (ties up 2–4M MAD)">TVA退税资金计划（占用200–400万）</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     EQUITY CALCULATOR
+══════════════════════════════════════════════════ -->
+<section id="equity" class="section">
+  <div class="sec-label"><span class="t" data-zh="股权计算器" data-en="Equity Calculator">股权计算器</span></div>
+  <div class="card">
+    <div class="card-title"><span class="ci ci-b">⚖</span><span class="t" data-zh="投资人股权与分红计算（实时计算）" data-en="Investor Equity & Dividend Calculator (Live)">投资人股权与分红计算</span></div>
+
+    <div class="eq-form" style="margin-bottom:1rem">
+      <div class="eq-field"><label class="t" data-zh="总投入（万MAD）" data-en="Total Investment (¥10k MAD)">总投入（万MAD）</label><input type="number" id="eq_total" value="2114" min="100" step="50"><span class="hint t" data-zh="含设备·厂房·运营·预备金" data-en="Incl. equipment, factory, ops, contingency">含设备·厂房·运营·预备金</span></div>
+      <div class="eq-field"><label class="t" data-zh="你的现金出资（万MAD）" data-en="Your Cash (¥10k MAD)">你的现金出资（万MAD）</label><input type="number" id="eq_self" value="250" min="0" step="10"></div>
+      <div class="eq-field"><label class="t" data-zh="资源估值（万MAD）" data-en="Resource Valuation (¥10k MAD)">资源估值（万MAD）</label><input type="number" id="eq_res" value="300" min="0" step="50"><span class="hint t" data-zh="客户资源+技术+供应链" data-en="Clients+Tech+Supply chain">客户资源+技术+供应链</span></div>
+      <div class="eq-field"><label class="t" data-zh="协议年收益（万MAD/年）" data-en="Management Fee (¥10k MAD/yr)">协议年收益（万MAD）</label><input type="number" id="eq_fee" value="150" min="0" step="10"><span class="hint t" data-zh="管理费+技术授权，先于分红收取" data-en="Mgmt fee + license, before dividend">管理费+技术授权</span></div>
+      <div class="eq-field"><label class="t" data-zh="目标控股比例（%）" data-en="Target Control Share (%)">目标控股比例（%）</label><input type="number" id="eq_ctrl" value="51" min="51" max="80" step="1"><span class="hint t" data-zh="最低51%" data-en="Minimum 51%">最低51%</span></div>
+      <div class="eq-field"><label class="t" data-zh="可分配比例（%）" data-en="Dividend Ratio (%)">可分配比例（%）</label><input type="number" id="eq_dist" value="75" min="20" max="100" step="5"><span class="hint t" data-zh="税后利润中用于分红的比例" data-en="% of net profit paid as dividend">建议Y1留50%，Y2起75%</span></div>
+    </div>
+    <div class="eq-form" style="margin-bottom:1rem">
+      <div class="eq-field"><label class="t" data-zh="Y1税后净利润（万MAD）" data-en="Y1 Net Profit (¥10k MAD)">Y1净利润（万MAD）</label><input type="number" id="eq_p1" value="483" step="50"></div>
+      <div class="eq-field"><label class="t" data-zh="Y2税后净利润（万MAD）" data-en="Y2 Net Profit (¥10k MAD)">Y2净利润（万MAD）</label><input type="number" id="eq_p2" value="959" step="50"></div>
+      <div class="eq-field"><label class="t" data-zh="Y3税后净利润（万MAD）" data-en="Y3 Net Profit (¥10k MAD)">Y3净利润（万MAD）</label><input type="number" id="eq_p3" value="1883" step="50"></div>
+    </div>
+
+    <div class="card-title"><span class="ci ci-t">👥</span><span class="t" data-zh="投资人列表" data-en="Investor List">投资人列表</span></div>
+    <div id="eq_inv_list"></div>
+    <button class="btn-add" onclick="eqAddInv()" type="button">+ <span class="t" data-zh="添加投资人" data-en="Add Investor">添加投资人</span></button>
+    <button class="btn-calc" onclick="eqCalc()" type="button"><span class="t" data-zh="▶ 生成股权与分红方案" data-en="▶ Generate Equity & Dividend Plan">▶ 生成股权与分红方案</span></button>
+
+    <div class="eq-result" id="eq_result">
+      <div id="eq_alert"></div>
+      <div class="eq-kpi-grid" id="eq_kpis"></div>
+      <div class="yr-switch">
+        <button class="yr-btn active t" data-zh="Y1（70%产能）" data-en="Y1 (70% capacity)" onclick="eqSwitchYr(0,this)">Y1（70%产能）</button>
+        <button class="yr-btn t" data-zh="Y2（满产）" data-en="Y2 (Full)" onclick="eqSwitchYr(1,this)">Y2（满产）</button>
+        <button class="yr-btn t" data-zh="Y3（增长）" data-en="Y3 (Growth)" onclick="eqSwitchYr(2,this)">Y3（增长）</button>
+      </div>
+      <div id="eq_cards"></div>
+      <div class="alert info" style="margin-top:.75rem;font-size:12px">
+        <span>⚖</span>
+        <span class="t" data-zh="股权结构须由摩洛哥执业律师（Avocat inscrit au Barreau）起草章程及股东协议。资源入股（apport en industrie）须委托注册评估师出具评估报告。双层控股结构（SARLAU-A持有SARL-B的控股比例）是保障少数出资方控制权的唯一可靠法律路径。" data-en="Equity structure must be drafted by a Moroccan attorney (Avocat inscrit au Barreau). Resource contributions (apport en industrie) require a certified appraiser's report. A two-tier holding structure (SARLAU-A holding majority of SARL-B) is the only reliable legal path to secure control with minority capital.">股权结构须由摩洛哥执业律师起草。资源入股须委托注册评估师出具报告。双层控股是少数出资方保障控制权的唯一可靠路径。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════ -->
+<div style="text-align:center;padding:2rem 0 1rem;font-size:12px;color:var(--g400);line-height:1.9">
+  <div style="font-weight:700;color:var(--g600);margin-bottom:4px">KR Explorer · Morocco Outdoor Furniture Factory</div>
+  <div class="t" data-zh="投资简报 V3.0 · 2026年6月 · 所有数据基于2026年最新法规" data-en="Investor Briefing V3.0 · June 2026 · All data based on latest 2026 regulations">投资简报 V3.0 · 2026年6月 · 所有数据基于2026年最新法规</div>
+  <div class="t" data-zh="数据来源：SMIG employsome.com 2026.03 | CNSS upsilon-consulting.com 2026.03 | IS/ZAI auditia.ma 2026.01 | RAS PWC taxsummaries 2026.04" data-en="Sources: SMIG employsome.com 2026.03 | CNSS upsilon-consulting.com 2026.03 | IS/ZAI auditia.ma 2026.01 | RAS PWC 2026.04">数据来源：SMIG employsome.com 2026.03 | CNSS upsilon-consulting.com 2026.03 | IS/ZAI auditia.ma 2026.01 | RAS PWC 2026.04</div>
+  <div class="t" data-zh="本文件供内部决策参考，不构成法律或财务建议" data-en="This document is for internal decision-making reference only and does not constitute legal or financial advice">本文件供内部决策参考，不构成法律或财务建议</div>
+</div>
+
+</div><!-- /container -->
+</div><!-- /page -->
+
+<script>
+/* ════════════════════════════════════════
+   LANGUAGE
+════════════════════════════════════════ */
+let lang='zh';
+function toggleLang(){
+  lang=lang==='zh'?'en':'zh';
+  document.getElementById('lang-btn').textContent=lang==='zh'?'EN':'中文';
+  document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+  document.querySelectorAll('.t').forEach(el=>{
+    const txt=el.getAttribute('data-'+lang);
+    if(txt)el.textContent=txt;
+  });
+  // Redraw charts with correct labels
+  drawCharts();
+}
+
+/* ════════════════════════════════════════
+   CHARTS
+════════════════════════════════════════ */
+let chartPL=null, chartInvest=null;
+function drawCharts(){
+  const yrs=['Y1 2027\n(45%)','Y2 2028\n(75%)','Y3 2029\n(出口+)','Y4 2030\n(铝管)','Y5 2031\n(欧洲)'];
+  const rev=[1386,2309,3695,4911,5489];
+  const profit=[483,959,1883,2908,3297];
+
+  if(chartPL)chartPL.destroy();
+  const ctx1=document.getElementById('chartPL').getContext('2d');
+  chartPL=new Chart(ctx1,{
+    type:'bar',
+    data:{
+      labels:yrs,
+      datasets:[
+        {label:lang==='zh'?'营业收入':'Revenue',data:rev,backgroundColor:'#DBEAFE',borderRadius:4},
+        {label:lang==='zh'?'税后净利润':'Net Profit',data:profit,backgroundColor:'#0F766E',borderRadius:4}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:11}}},
+      tooltip:{callbacks:{label:v=>'MAD '+v.raw.toLocaleString()+'万'}}},
+      scales:{y:{ticks:{callback:v=>v+'万',font:{size:10}},grid:{color:'#F1F5F9'}},
+        x:{grid:{display:false}}}}
+  });
+
+  if(chartInvest)chartInvest.destroy();
+  const ctx2=document.getElementById('chartInvest').getContext('2d');
+  const lbls=lang==='zh'
+    ?['设备（850万）','厂房工程（300万）','运营资金（650万）','运输安装（96万）','注册法律（19万）','培训试产（22万）','预备金（177万）']
+    :['Equipment(850)','Factory(300)','Working Cap(650)','Freight+Install(96)','Legal+Reg(19)','Training(22)','Contingency(177)'];
+  chartInvest=new Chart(ctx2,{
+    type:'doughnut',
+    data:{
+      labels:lbls,
+      datasets:[{data:[850,300,650,96,19,22,177],
+        backgroundColor:['#2563EB','#0F766E','#B45309','#7C3AED','#DC2626','#EA580C','#94A3B8'],
+        borderWidth:2,borderColor:'#fff'}]
+    },
+    options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10,padding:6}},
+        tooltip:{callbacks:{label:v=>'MAD '+v.raw+'万 ('+Math.round(v.raw/2114*100)+'%)'}}}}
+  });
+}
+drawCharts();
+
+/* ════════════════════════════════════════
+   EQUITY CALCULATOR
+════════════════════════════════════════ */
+let eqInvestors=[];
+let eqCurrentYr=0;
+let eqLastResult=null;
+
+function eqN(id){return parseFloat(document.getElementById(id).value)||0;}
+function fmt(n,d=1){if(n==null||isNaN(n))return'–';return Number(n).toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function fmtP(n){return Number(n).toFixed(2)+'%';}
+
+function eqAddInv(d={}){
+  eqInvestors.push({name:d.name||`${lang==='zh'?'投资人':'Investor'} ${String.fromCharCode(65+eqInvestors.length)}`,amount:d.amount||200});
+  eqRenderList();
+}
+function eqRemoveInv(i){eqInvestors.splice(i,1);eqRenderList();}
+function eqRenderList(){
+  const c=document.getElementById('eq_inv_list');c.innerHTML='';
+  eqInvestors.forEach((inv,i)=>{
+    const row=document.createElement('div');
+    row.className='inv-row-eq';
+    row.innerHTML=`
+      <div class="eq-field"><label style="font-size:11px;color:var(--g500)">${lang==='zh'?'姓名':'Name'}</label>
+        <input type="text" value="${inv.name.replace(/"/g,'&quot;')}" onchange="eqInvestors[${i}].name=this.value" style="height:34px;font-size:13px"></div>
+      <div class="eq-field"><label style="font-size:11px;color:var(--g500)">${lang==='zh'?'出资（万MAD）':'Amount (¥10k MAD)'}</label>
+        <input type="number" value="${inv.amount}" min="1" step="10" onchange="eqInvestors[${i}].amount=+this.value" style="height:34px;font-size:13px;font-weight:700"></div>
+      <button class="btn-rm-eq" onclick="eqRemoveInv(${i})">✕</button>`;
+    c.appendChild(row);
+  });
+}
+
+function eqCalc(){
+  if(eqInvestors.length===0){alert(lang==='zh'?'请至少添加一位投资人':'Please add at least one investor');return;}
+  const P={
+    total:eqN('eq_total'),self:eqN('eq_self'),res:eqN('eq_res'),
+    fee:eqN('eq_fee'),ctrl:eqN('eq_ctrl')/100,dist:eqN('eq_dist')/100,
+    ras:0.10,profits:[eqN('eq_p1'),eqN('eq_p2'),eqN('eq_p3')]
+  };
+  const selfTotal=P.self+P.res;
+  const extTotal=eqInvestors.reduce((s,v)=>s+v.amount,0);
+  const grandTotal=selfTotal+extTotal;
+  const naturalPct=selfTotal/grandTotal;
+  const needDual=naturalPct<P.ctrl;
+  const extRemain=1-P.ctrl;
+
+  const invCalc=eqInvestors.map(inv=>({...inv,pct:extRemain*(inv.amount/extTotal)}));
+
+  const byYr=P.profits.map(profit=>{
+    const feeAT=P.fee;
+    const afterFee=Math.max(0,profit-P.fee);
+    const dist=afterFee*P.dist;
+    const selfDiv=dist*P.ctrl;
+    const selfTotal2=selfDiv+feeAT;
+    const invYr=invCalc.map(ic=>{
+      const gross=dist*ic.pct;
+      const ras=gross*P.ras;
+      const net=gross-ras;
+      const roi=ic.amount>0?(net/ic.amount)*100:0;
+      return{...ic,gross,ras,net,roi};
+    });
+    return{profit,feeAT,afterFee,dist,selfDiv,selfTotal2,invYr};
+  });
+
+  eqLastResult={P,selfTotal,extTotal,grandTotal,naturalPct,needDual,invCalc,byYr};
+  eqRender(eqLastResult);
+  document.getElementById('eq_result').style.display='block';
+  document.getElementById('eq_result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function eqSwitchYr(yr,btn){
+  eqCurrentYr=yr;
+  document.querySelectorAll('.yr-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  if(eqLastResult)eqRenderCards(eqLastResult,yr);
+}
+
+function eqRender(R){
+  const {P,naturalPct,needDual,byYr}=R;
+  const alertEl=document.getElementById('eq_alert');
+  if(needDual){
+    alertEl.innerHTML=`<div class="alert warn">
+      ⚠ ${lang==='zh'?`自然出资比例 ${fmtP(naturalPct*100)}，低于目标控制权 ${(P.ctrl*100).toFixed(0)}%。需采用双层控股结构（SARLAU-A持有SARL-B的${(P.ctrl*100).toFixed(0)}%）保障控制权。`
+      :`Natural shareholding ${fmtP(naturalPct*100)} is below your target ${(P.ctrl*100).toFixed(0)}%. A two-tier holding structure (SARLAU-A holding ${(P.ctrl*100).toFixed(0)}% of SARL-B) is required to secure control.`}
+    </div>`;
+  } else {
+    alertEl.innerHTML=`<div class="alert ok">
+      ✓ ${lang==='zh'?`出资比例（${fmtP(naturalPct*100)}）已超过目标控制权，可直接建立单层SARL，仍建议通过控股公司持股增加保护。`
+      :`Your shareholding (${fmtP(naturalPct*100)}) exceeds target control. A single-tier SARL is possible; a holding company is still recommended for extra protection.`}
+    </div>`;
+  }
+
+  const r2=byYr[1];
+  const lz=(zh,en)=>lang==='zh'?zh:en;
+  document.getElementById('eq_kpis').innerHTML=`
+    <div class="kpi k-navy"><div class="kv">${(P.ctrl*100).toFixed(0)}%</div><div class="kl">${lz('你的控股比例','Your Control')}</div></div>
+    <div class="kpi k-blue"><div class="kv">${fmt(R.extTotal,0)}<span style="font-size:13px">万</span></div><div class="kl">${lz('外部投资人合计','Total External Capital')}</div></div>
+    <div class="kpi k-amber"><div class="kv">${fmt(P.fee,0)}<span style="font-size:13px">万/年</span></div><div class="kl">${lz('协议收益（先于分红）','Mgmt Fee (before dividend)')}</div></div>
+    <div class="kpi k-teal"><div class="kv">${fmt(r2.selfTotal2,0)}<span style="font-size:13px">万</span></div><div class="kl">${lz('你Y2年度总收益','Your Y2 Total Income')}</div></div>
+    <div class="kpi k-green"><div class="kv">${fmt(r2.dist,0)}<span style="font-size:13px">万</span></div><div class="kl">${lz('Y2可分配利润','Y2 Distributable Profit')}</div></div>
+  `;
+  eqRenderCards(R,eqCurrentYr);
+}
+
+function eqRenderCards(R,yr){
+  const {P,byYr}=R;
+  const yd=byYr[yr];
+  const lz=(zh,en)=>lang==='zh'?zh:en;
+  let html=`
+    <div class="inv-res-card you">
+      <div class="irc-name">${lz('你（控制方）','You (Founder)')} <span class="badge badge-ctrl">${lz('控制方 '+fmtP(P.ctrl*100),'Control '+fmtP(P.ctrl*100))}</span></div>
+      <div class="irc-grid">
+        <div class="irc-cell"><div class="cl">${lz('协议收益（税后）','Mgmt Fee (after tax)')}</div><div class="cv pos">${fmt(yd.feeAT,0)} 万</div><div class="cs">${lz('先于分红收取','Before dividend')}</div></div>
+        <div class="irc-cell"><div class="cl">${lz('股权分红（税前）','Share Dividend (pre-tax)')}</div><div class="cv bl">${fmt(yd.selfDiv,0)} 万</div></div>
+        <div class="irc-cell"><div class="cl">${lz('年度总收益','Total Annual Income')}</div><div class="cv pos">${fmt(yd.selfTotal2,0)} 万</div></div>
+        <div class="irc-cell"><div class="cl">${lz('占净利润比','% of Net Profit')}</div><div class="cv bl">${yd.profit>0?((yd.selfTotal2/yd.profit)*100).toFixed(1):'-'}%</div></div>
+      </div>
+    </div>`;
+  yd.invYr.forEach(ir=>{
+    const roiCls=ir.roi>=20?'pos':ir.roi>=12?'bl':'am';
+    html+=`
+      <div class="inv-res-card">
+        <div class="irc-name">${ir.name} <span class="badge badge-fin">${lz('财务投资','Financial')} ${fmtP(ir.pct*100)}</span>
+          <span style="font-size:11px;color:var(--g400)">${lz('出资','Capital')} ${fmt(ir.amount,0)} ${lz('万MAD','¥10k MAD')}</span>
+        </div>
+        <div class="irc-grid">
+          <div class="irc-cell"><div class="cl">${lz('税前分红','Gross Dividend')}</div><div class="cv">${fmt(ir.gross,0)} 万</div></div>
+          <div class="irc-cell"><div class="cl">RAS 10%</div><div class="cv am">-${fmt(ir.ras,0)} 万</div></div>
+          <div class="irc-cell"><div class="cl">${lz('实收分红','Net Dividend')}</div><div class="cv pos">${fmt(ir.net,0)} 万</div><div class="cs">${lz('税后到手','After tax')}</div></div>
+          <div class="irc-cell"><div class="cl">${lz('年化收益率','Annual ROI')}</div><div class="cv ${roiCls}">${ir.roi.toFixed(1)}%</div></div>
+        </div>
+      </div>`;
+  });
+  document.getElementById('eq_cards').innerHTML=html;
+}
+
+/* Init */
+eqAddInv({name:lang==='zh'?'投资人A':'Investor A',amount:200});
+eqAddInv({name:lang==='zh'?'投资人B':'Investor B',amount:500});
+
+/* Active nav on scroll */
+window.addEventListener('scroll',()=>{
+  const sections=document.querySelectorAll('section[id]');
+  const scrollY=window.scrollY+80;
+  sections.forEach(s=>{
+    const top=s.offsetTop, bottom=top+s.offsetHeight;
+    const link=document.querySelector(`.tb-nav a[href="#${s.id}"]`);
+    if(link){link.classList.toggle('active',scrollY>=top&&scrollY<bottom);}
+  });
+});
+</script>
+</body>
+</html>
